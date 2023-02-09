@@ -54,10 +54,17 @@ if is_server() {
 }
 ```
 
-## Log an `&str` in the Browser or on the Server
-* `console_log(&str)` https://docs.rs/leptos_dom/latest/leptos_dom/fn.console_log.html
-* `console_warn(&str)` https://docs.rs/leptos_dom/latest/leptos_dom/fn.console_warn.html
-* `console_error(&str)` https://docs.rs/leptos_dom/latest/leptos_dom/fn.console_error.html
+## Log things in the Browser or on the Server
+* `log!()` https://docs.rs/leptos_dom/latest/leptos_dom/macro.log.html
+* `warn!()` https://docs.rs/leptos_dom/latest/leptos_dom/macro.warn.html
+* `error!()` https://docs.rs/leptos_dom/latest/leptos_dom/macro.error.html
+
+example: 
+```rust
+log!("Anything that println!() can handle");
+log!("{:?}", Some("thing that implents Debug"));
+```
+
 
 
 
