@@ -56,6 +56,42 @@ if is_server() {
 }
 ```
 
+## Redirect on the server
+This is server framework dependent.
+
+### With Actix
+
+use `leptos_actix::redirect()` https://docs.rs/leptos_actix/0.1.3/leptos_actix/fn.redirect.html
+
+Example:
+```rust
+leptos_actix::redirect(cx, "/somewhere-else");
+```
+
+## Changing the response
+This is server framework dependent.
+
+### With Actix
+
+use `use_context::<leptos_actix::ResponseOptions>` 
+* `use_context` https://docs.rs/leptos/latest/leptos/fn.use_context.html
+* `leptos_actix::ResponseOptions` https://docs.rs/leptos_actix/latest/leptos_actix/struct.ResponseOptions.html
+
+Example:
+```rust
+// leptos_actix's implementation of `redirect()`
+pub async fn redirect(cx: leptos::Scope, path: &str) {
+    let response_options = use_context::<ResponseOptions>(cx).unwrap();
+    response_options.set_status(StatusCode::FOUND).await;
+    response_options
+        .insert_header(
+            header::LOCATION,
+            header::HeaderValue::from_str(path).expect("Failed to create HeaderValue"),
+        )
+        .await;
+}
+```
+
 # Misc
 
 ## Log things in the Browser or on the Server
