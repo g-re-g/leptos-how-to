@@ -2,7 +2,8 @@
 
 A How To collection for common [leptos](https://github.com/leptos-rs/leptos) patterns.
 
-# How To:
+
+# Reactive Templating
 
 ## if/else render 2 different views based on a reactive variable
 
@@ -32,6 +33,7 @@ view! { cx,
   </Show>
 }
 ```
+# Navigation
 
 ## Navigate the browser in javascript
 `use_navigate(Scope)` returns a function that can be used to navigate the browser.
@@ -53,6 +55,8 @@ if is_server() {
     let _ = nav("/", Default::default());
 }
 ```
+
+# Misc
 
 ## Log things in the Browser or on the Server
 * `log!()` https://docs.rs/leptos_dom/latest/leptos_dom/macro.log.html
